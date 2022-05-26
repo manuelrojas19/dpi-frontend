@@ -1,0 +1,99 @@
+<main class="login-form">
+  <div class="row justify-content-center">
+    <div class="col-12 col-lg-6">
+      <div class="card shadow">
+        <div class="card-header text-center">
+          <h2 class="h5">Calculo de ajuste de fertilizacion</h2>
+        </div>
+        <div class="card-body">
+          <form
+          (ngSubmit)="onSubmit()"
+          [formGroup]="form"
+          class="form needs-validation"
+          novalidate
+          >
+          <div  *ngIf="formHasErrors"class="alert alert-danger" role="alert">
+            Datos ingresados incorrectamente
+          </div>
+            <div  *ngIf="isResult"class="alert alert-primary" role="alert">
+              El resultado es: {{result}}
+            </div>
+
+            <!-- <div class="col-md-6">
+                <label for="validationServer05" class="form-label">Zip</label>
+                <input type="text" class="form-control is-invalid" id="validationServer05" aria-describedby="validationServer05Feedback" required>
+                <div id="validationServer05Feedback" class="invalid-feedback">
+                  Please provide a valid zip.
+                </div>
+              </div>    -->
+
+            <div class="form-group row">
+              <label
+                for="gramosRequeridos"
+                class="col-md-5 col-lg-4 col-form-label text-md-right"
+              >
+                Gramos requeridos
+              </label>
+              <div class="col-md-7 col-lg-8">
+                <input
+                  formControlName="gramosRequeridos"
+                  placeholder="Ingrese los gramos requeridos"
+                  type="number"
+                  id="gramosRequeridos"
+                  class="form-control"
+                  min="0"
+                  max="600000"
+                  required
+                  [ngClass]="
+                    formHasErrors && controls?.['gramosRequeridos']?.errors
+                      ? 'is-invalid'
+                      : ''
+                  "
+                />
+                <div class="invalid-feedback">
+                  Por favor ingrese los gramos requeridos correctamente.
+                </div>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label
+                for="porcentajePureza"
+                class="col-md-5 col-lg-4 col-form-label text-md-right"
+              >
+                Porcentaje de pureza
+              </label>
+              <div class="col-md-7 col-lg-8">
+                <input
+                  formControlName="porcentajePureza"
+                  placeholder="Ingrese el porcentaje de pureza"
+                  type="number"
+                  id="porcentajePureza"
+                  min="0"
+                  max="100"
+                  class="form-control"
+                  name="porcentajePureza"
+                  required
+                  [ngClass]="
+                    formHasErrors && controls?.['porcentajePureza']?.errors
+                      ? 'is-invalid'
+                      : ''
+                  "
+                />
+                <div class="invalid-feedback">
+                  Por favor ingrese el porcentaje de pureza correctamente.
+                </div>
+              </div>
+            </div>
+            <div class="form-group row">
+              <div class="col-md-5 col-lg-4 offset-md-5 offset-lg-4">
+                <button type="submit" class="btn btn-outline-primary">
+                  Realizar calculo
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>

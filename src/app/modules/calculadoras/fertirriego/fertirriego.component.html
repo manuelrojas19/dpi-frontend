@@ -1,0 +1,100 @@
+<main class="login-form">
+  <div class="row justify-content-center">
+    <div class="col-12 col-lg-6">
+      <div class="card shadow">
+        <div class="card-header text-center">
+          <h2 class="h5">Calculo de fertirriego (Litros necesarios)</h2>
+        </div>
+        <div class="card-body">
+          <form
+          (ngSubmit)="onSubmit()"
+          [formGroup]="form"
+          class="form needs-validation"
+          novalidate
+          >
+          <div  *ngIf="formHasErrors"class="alert alert-danger" role="alert">
+            Datos ingresados incorrectamente
+          </div>
+            <div  *ngIf="isResult"class="alert alert-primary" role="alert">
+              El resultado es: {{result}}
+            </div>
+
+            <!-- <div class="col-md-6">
+                <label for="validationServer05" class="form-label">Zip</label>
+                <input type="text" class="form-control is-invalid" id="validationServer05" aria-describedby="validationServer05Feedback" required>
+                <div id="validationServer05Feedback" class="invalid-feedback">
+                  Please provide a valid zip.
+                </div>
+              </div>    -->
+
+            <div class="form-group row">
+              <label
+                for="valor1"
+                class="col-md-5 col-lg-4 col-form-label text-md-right"
+              >
+                Numero de plantas
+              </label>
+              <div class="col-md-7 col-lg-8">
+                <input
+                  formControlName="valor1"
+                  placeholder="Ingrese el número de plantas"
+                  type="number"
+                  id="valor1"
+                  class="form-control"
+                  min="0"
+                  max="1000"
+                  required
+                  [ngClass]="
+                    formHasErrors && controls?.['valor1']?.errors
+                      ? 'is-invalid'
+                      : ''
+                  "
+                />
+                <div class="invalid-feedback">
+                  Por favor ingrese el número de plantas correctamente
+                </div>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label
+                for="valor2"
+                class="col-md-5 col-lg-4 col-form-label text-md-right"
+              >
+                Volumen de agua por planta (ml)
+              </label>
+              <div class="col-md-7 col-lg-8">
+                <input
+                  formControlName="valor2"
+                  placeholder="Ingrese el volumen de agua por planta"
+                  type="number"
+                  id="valor2"
+                  min="0"
+                  max="6000"
+                  class="form-control"
+                  name="valor2"
+                  required
+                  [ngClass]="
+                    formHasErrors && controls?.['valor2']?.errors
+                      ? 'is-invalid'
+                      : ''
+                  "
+                />
+                <div class="invalid-feedback">
+                  Por favor ingrese el volumen de agua por planta correctamente.
+                </div>
+              </div>
+            </div>
+            <div class="form-group row">
+              <div class="col-md-5 col-lg-4 offset-md-5 offset-lg-4">
+                <button type="submit" class="btn btn-outline-primary">
+                  Realizar calculo
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
