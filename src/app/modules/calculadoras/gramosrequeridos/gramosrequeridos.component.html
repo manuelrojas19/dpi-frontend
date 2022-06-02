@@ -1,129 +1,136 @@
 <main class="login-form">
-    <div class="row justify-content-center">
-      <div class="col-12 col-lg-6">
-        <div class="card shadow">
-          <div class="card-header text-center">
-            <h2 class="h5">Calculo de gramos requeridos</h2>
-          </div>
-          <div class="card-body">
-            <form
+  <div class="row justify-content-center">
+    <div class="col-12 col-lg-6">
+      <div class="card shadow">
+        <div class="card-header text-center">
+          <h2 class="h5">Calculo de gramos requeridos</h2>
+        </div>
+        <div class="card-body">
+          <form
             (ngSubmit)="onSubmit()"
             [formGroup]="form"
             class="form needs-validation"
             novalidate
-            >
-            <div  *ngIf="formHasErrors"class="alert alert-danger" role="alert">
-              Datos ingresados incorrectamente
+          >
+            <div *ngIf="formHasErrors" class="alert alert-danger" role="alert">
+              Datos ingresados incorrectamente:
+              <ul class="list-group list-group-flush">
+                <li
+                  *ngFor="let msg of errorMsg"
+                  class="list-group-item list-group-item-danger"
+                >
+                  {{ msg }}
+                </li>
+              </ul>
             </div>
-              <div  *ngIf="isResult"class="alert alert-primary" role="alert">
-                El resultado es: {{result}}
-              </div>
-  
-              <!-- <div class="col-md-6">
+            <div *ngIf="isResult" class="alert alert-primary" role="alert">
+              La cantidad de gramos requeridos es {{ result }} gr
+            </div>
+
+            <!-- <div class="col-md-6">
                   <label for="validationServer05" class="form-label">Zip</label>
                   <input type="text" class="form-control is-invalid" id="validationServer05" aria-describedby="validationServer05Feedback" required>
                   <div id="validationServer05Feedback" class="invalid-feedback">
                     Please provide a valid zip.
                   </div>
                 </div>    -->
-  
-              <div class="form-group row">
-                <label
-                  for="valor1"
-                  class="col-md-5 col-lg-4 col-form-label text-md-right"
-                >
-                  Cantidad de nutriente en el producto
-                </label>
-                <div class="col-md-7 col-lg-8">
-                  <input
-                    formControlName="valor1"
-                    placeholder="Ingrese los gramos requeridos"
-                    type="number"
-                    id="valor1"
-                    class="form-control"
-                    min="0"
-                    max="6000"
-                    required
-                    [ngClass]="
+
+            <div class="form-group row">
+              <label
+                for="valor1"
+                class="col-md-5 col-lg-4 col-form-label text-md-right"
+              >
+                Cantidad de nutriente en el producto (gr)
+              </label>
+              <div class="col-md-7 col-lg-8">
+                <input
+                  formControlName="valor1"
+                  placeholder="Ingrese los gramos requeridos"
+                  type="number"
+                  id="valor1"
+                  class="form-control"
+                  min="0"
+                  max="6000"
+                  required
+                  [ngClass]="
                       formHasErrors && controls?.['valor1']?.errors
                         ? 'is-invalid'
                         : ''
                     "
-                  />
-                  <div class="invalid-feedback">
-                    Por favor ingrese los gramos requeridos correctamente.
-                  </div>
+                />
+                <div class="invalid-feedback">
+                  Por favor ingrese la cantidad de nutriente en el producto correctamente.
                 </div>
               </div>
-              <div class="form-group row">
-                <label
-                  for="valor2"
-                  class="col-md-5 col-lg-4 col-form-label text-md-right"
-                >
-                  Cantidad de nutriente requerida
-                </label>
-                <div class="col-md-7 col-lg-8">
-                  <input
-                    formControlName="valor2"
-                    placeholder="Ingrese la cantidad de nutriente requerida"
-                    type="number"
-                    id="valor2"
-                    min="0"
-                    max="6000"
-                    class="form-control"
-                    name="valor2"
-                    required
-                    [ngClass]="
+            </div>
+            <div class="form-group row">
+              <label
+                for="valor2"
+                class="col-md-5 col-lg-4 col-form-label text-md-right"
+              >
+                Cantidad de nutriente requerida (gr)
+              </label>
+              <div class="col-md-7 col-lg-8">
+                <input
+                  formControlName="valor2"
+                  placeholder="Ingrese la cantidad de nutriente requerida"
+                  type="number"
+                  id="valor2"
+                  min="0"
+                  max="6000"
+                  class="form-control"
+                  name="valor2"
+                  required
+                  [ngClass]="
                       formHasErrors && controls?.['valor2']?.errors
                         ? 'is-invalid'
                         : ''
                     "
-                  />
-                  <div class="invalid-feedback">
-                    Por favor ingrese el porcentaje de pureza correctamente.
-                  </div>
+                />
+                <div class="invalid-feedback">
+                  Por favor ingrese el porcentaje de eficacia correctamente.
                 </div>
               </div>
-              <div class="form-group row">
-                <label
-                  for="valor3"
-                  class="col-md-5 col-lg-4 col-form-label text-md-right"
-                >
-                  Porcentaje de eficacia
-                </label>
-                <div class="col-md-7 col-lg-8">
-                  <input
-                    formControlName="valor3"
-                    placeholder="Ingrese el porcentaje de pureza"
-                    type="number"
-                    id="valor3"
-                    min="0"
-                    max="100"
-                    class="form-control"
-                    name="valor3"
-                    required
-                    [ngClass]="
+            </div>
+            <div class="form-group row">
+              <label
+                for="valor3"
+                class="col-md-5 col-lg-4 col-form-label text-md-right"
+              >
+                Porcentaje de eficacia (%)
+              </label>
+              <div class="col-md-7 col-lg-8">
+                <input
+                  formControlName="valor3"
+                  placeholder="Ingrese el porcentaje de eficacia"
+                  type="number"
+                  id="valor3"
+                  min="0"
+                  max="100"
+                  class="form-control"
+                  name="valor3"
+                  required
+                  [ngClass]="
                       formHasErrors && controls?.['valor3']?.errors
                         ? 'is-invalid'
                         : ''
                     "
-                  />
-                  <div class="invalid-feedback">
-                    Por favor ingrese el porcentaje de pureza correctamente.
-                  </div>
+                />
+                <div class="invalid-feedback">
+                  Por favor ingrese el porcentaje de pureza correctamente.
                 </div>
               </div>
-              <div class="form-group row">
-                <div class="col-md-5 col-lg-4 offset-md-5 offset-lg-4">
-                  <button type="submit" class="btn btn-outline-primary">
-                    Realizar calculo
-                  </button>
-                </div>
+            </div>
+            <div class="form-group row">
+              <div class="col-md-5 col-lg-4 offset-md-5 offset-lg-4">
+                <button type="submit" class="btn btn-outline-primary">
+                  Realizar calculo
+                </button>
               </div>
-            </form>
-          </div>
+            </div>
+          </form>
         </div>
       </div>
     </div>
-  </main>
-  
+  </div>
+</main>

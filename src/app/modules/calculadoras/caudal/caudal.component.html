@@ -12,8 +12,16 @@
           class="form needs-validation"
           novalidate
           >
-          <div  *ngIf="formHasErrors"class="alert alert-danger" role="alert">
-            Datos ingresados incorrectamente
+          <div *ngIf="formHasErrors" class="alert alert-danger" role="alert">
+            Datos ingresados incorrectamente:
+            <ul class="list-group list-group-flush">
+              <li
+                *ngFor="let msg of errorMsg"
+                class="list-group-item list-group-item-danger"
+              >
+                {{ msg }}
+              </li>
+            </ul>
           </div>
             <div  *ngIf="isResult"class="alert alert-primary" role="alert">
               El resultado es: {{result}}
@@ -41,8 +49,6 @@
                   type="number"
                   id="valor1"
                   class="form-control"
-                  min="0"
-                  max="100"
                   required
                   [ngClass]="
                     formHasErrors && controls?.['valor1']?.errors
@@ -51,7 +57,7 @@
                   "
                 />
                 <div class="invalid-feedback">
-                  Por favor ingrese el número de plantas correctamente
+                  Por favor ingrese la capacidad del tanque correctamente
                 </div>
               </div>
             </div>
@@ -68,8 +74,6 @@
                   placeholder="Ingrese los litros necesarios"
                   type="number"
                   id="valor2"
-                  min="0"
-                  max="100"
                   class="form-control"
                   name="valor2"
                   required
@@ -80,7 +84,7 @@
                   "
                 />
                 <div class="invalid-feedback">
-                  Por favor ingrese el volumen de agua por planta correctamente.
+                  Por favor ingrese los litros necesarios correctamente.
                 </div>
               </div>
             </div>

@@ -13,10 +13,13 @@
           novalidate
           >
           <div  *ngIf="formHasErrors"class="alert alert-danger" role="alert">
-            Datos ingresados incorrectamente
+            Datos ingresados incorrectamente:
+            <ul class="list-group list-group-flush">
+              <li *ngFor="let msg of errorMsg" class="list-group-item list-group-item-danger">{{msg}}</li>
+            </ul>
           </div>
             <div  *ngIf="isResult"class="alert alert-primary" role="alert">
-              El resultado es: {{result}}
+              El ajuste de fertilización es {{result}}
             </div>
 
             <!-- <div class="col-md-6">

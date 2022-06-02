@@ -14,19 +14,22 @@ export class CaudalComponent implements OnInit {
       [
         Validators.required,
         Validators.max(100),
-        Validators.min(0)
+        Validators.min(1)
       ]),
     valor2: new FormControl('',
       [
         Validators.required,
         Validators.max(100),
-        Validators.min(0)
+        Validators.min(1)
       ])
   });
 
   formHasErrors: boolean = false;
   isResult: boolean = false;
   result = 0;
+
+
+  errorMsg: String[] = [];
 
   constructor() { }
 
@@ -40,6 +43,14 @@ export class CaudalComponent implements OnInit {
 
   onSubmit(): void {
     this.isResult = false;
+    this.errorMsg = []
+
+    if (this.form.get('valor1')?.value > 1 || this.form.get('valor1')?.value < 100 )
+      this.errorMsg.push("La capacidad del tanque debe ser un valor entre 1L y 100L")
+
+    if (this.form.get('valor2')?.value > 10000 || this.form.get('valor2')?.value < 100)
+      this.errorMsg.push("La cantidad de litros necesarios debe ser un valor entre 1L y 100L")
+
 
     if (this.form.invalid) {
       this.formHasErrors = true;

@@ -26,6 +26,7 @@ export class FertilizacionComponent implements OnInit {
   formHasErrors: boolean = false;
   isResult: boolean = false;
   result = 0;
+  errorMsg: String[] = [];
 
   constructor() { }
 
@@ -39,12 +40,21 @@ export class FertilizacionComponent implements OnInit {
 
   onSubmit(): void {
     this.isResult = false;
+    this.errorMsg = [];
+
+
+    if (this.form.get('gramosRequeridos')?.value > 600000 || this.form.get('gramosRequeridos')?.value < 100 )
+      this.errorMsg.push("Los gramos requeridos deben ser un valor entre 100 gr a 600,000 gr")
+
+    if (this.form.get('porcentajePureza')?.value > 100 || this.form.get('porcentajePureza')?.value < 10)
+      this.errorMsg.push("El porcentaje de pureza debe ser un valor entre 10% a 100%")
 
     if (this.form.invalid) {
       this.formHasErrors = true;
       return
     }
-    
+
+
     this.formHasErrors = false;
     this.result = this.form.get('gramosRequeridos')?.value / this.form.get('porcentajePureza')?.value
     this.isResult = true;
